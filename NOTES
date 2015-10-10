@@ -1,0 +1,2 @@
+1)Add recipe cross-referencing - for a given recipe analyze ingredients, recipe name and recipe description and display suggestions
+about other recipes that are similar (can be shown as percentage progressbar for overlapping between recipes)
