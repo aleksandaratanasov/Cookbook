@@ -15,11 +15,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.ava.cookbook.views;
+package com.ava.cookbook.components;
 
 import com.ava.cookbook.controllers.CookbookController;
 import com.ava.cookbook.controllers.MenuController;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
@@ -30,17 +29,17 @@ import com.vaadin.ui.MenuBar;
  *
  * @author redbaron
  */
-public class MenuView extends CustomComponent {
+public class MenuComponent extends CustomComponent {
 
     private MenuController controller;
 
-    public MenuView() {
+    public MenuComponent(String username) {
         controller = new MenuController();
         setSizeUndefined();
 
         HorizontalLayout layout = new HorizontalLayout();
         final Label title = new Label("Cookbook", ContentMode.HTML);
-        final Label greeting = new Label("Hello, " + (String)VaadinSession.getCurrent().getAttribute("username") + "!", ContentMode.HTML);
+        final Label greeting = new Label("Hello, " + username + "!", ContentMode.HTML);
 
         MenuBar menu = new MenuBar();
         MenuBar.MenuItem recipes = menu.addItem("Recipes", null, null);

@@ -92,4 +92,8 @@ public class SettingsController {
           em.close();
         }
     }
+
+    public String getCurrentUsername() {
+        return (String)VaadinSession.getCurrent().getAttribute("username");
+    }
 }

@@ -57,8 +57,7 @@ public class LoginController {
      * Starts a session with the given username as attribute which is used for loading user-specific content in other views
      * @param username Name of the current user
      */
-    public void startSession(String username) {
-        // FIXME See why this one here is set to null. Maybe because it is called from within the constructor?
+    public static void startSession(String username) {
         VaadinSession.getCurrent().setAttribute("username", username);
     }
 

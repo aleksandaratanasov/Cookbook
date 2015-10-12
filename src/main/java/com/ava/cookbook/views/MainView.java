@@ -17,6 +17,7 @@
  */
 package com.ava.cookbook.views;
 
+import com.ava.cookbook.components.MenuComponent;
 import com.ava.cookbook.controllers.CookbookController;
 import com.ava.cookbook.controllers.MainController;
 import com.ava.cookbook.controllers.UserController;
@@ -31,18 +32,26 @@ import com.vaadin.ui.VerticalLayout;
 public class MainView extends VerticalLayout implements View {
 
     private MainController controller;
+    private MenuComponent menu;
+    private boolean trigger;
 
     public MainView() {
+        trigger = true;
         controller = new MainController();
         setSizeUndefined();
 
-        addComponent(new MenuView());
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         // This check is to prevent copy-pasting URL for this view and entering it as a non-registered user
         if(!UserController.validUser()) getUI().getNavigator().navigateTo(CookbookController.LOGIN_VIEW);
+
+        if(trigger) {
+            menu = new MenuComponent(MainController.getCurrentUsername());
+            addComponent(menu);
+            trigger = false;
+        }
     }
 
 }

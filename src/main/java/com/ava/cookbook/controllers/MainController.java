@@ -17,15 +17,22 @@
  */
 package com.ava.cookbook.controllers;
 
+import com.vaadin.server.VaadinSession;
+
 /**
  *
  * @author redbaron
  */
 public class MainController {
 
-    UserController u_controller;
+    private UserController u_controller;
 
     public MainController() {
         u_controller = new UserController();
+    }
+
+    public static String getCurrentUsername() {
+        String username = (String)VaadinSession.getCurrent().getAttribute("username");
+        return username;
     }
 }

@@ -17,8 +17,10 @@
  */
 package com.ava.cookbook.views;
 
+import com.ava.cookbook.components.MenuComponent;
 import com.ava.cookbook.controllers.CookbookController;
 import com.ava.cookbook.controllers.SettingsController;
+import com.ava.cookbook.controllers.UserController;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.window.WindowMode;
@@ -35,12 +37,13 @@ import com.vaadin.ui.Window;
 public class SettingsView extends VerticalLayout implements View{
 
     private SettingsController controller;
+    private MenuComponent menu;
+    private boolean trigger;
 
     public SettingsView() {
+        trigger = true;
         controller = new SettingsController();
         setSizeUndefined();
-
-        addComponent(new MenuView());
 
         final PasswordField currentPassword = new PasswordField("Current password: ");
         final PasswordField newPassword = new PasswordField("New password: ");
@@ -100,7 +103,13 @@ public class SettingsView extends VerticalLayout implements View{
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!UserController.validUser()) getUI().getNavigator().navigateTo(CookbookController.LOGIN_VIEW);
+
+        if(trigger) {
+            menu = new MenuComponent(controller.getCurrentUsername());
+            addComponent(menu);
+            trigger = false;
+        }
     }
 
 }

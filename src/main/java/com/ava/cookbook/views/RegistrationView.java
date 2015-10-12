@@ -115,10 +115,10 @@ public class RegistrationView extends VerticalLayout implements View {
                         error.setCaption("<font color='red'>Failed to create user!</font>");
                         error.setVisible(true);
                         break;
-                    default:
+                    case 0:
                         // Go to the main view in case of a successful registration
                         error.setVisible(false);
-                        controller.startSession(username.getValue());
+                        LoginController.startSession(username.getValue());
                         getUI().getNavigator().navigateTo(CookbookController.MAIN_VIEW);
                 }
             }
