@@ -3,6 +3,7 @@ package com.ava.cookbook.controllers;
 import com.ava.cookbook.views.LoginView;
 import com.ava.cookbook.views.MainView;
 import com.ava.cookbook.views.RegistrationView;
+import com.ava.cookbook.views.SettingsView;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -21,16 +22,17 @@ import com.vaadin.ui.VerticalLayout;
 @Theme("cookbooktheme")
 @Widgetset("com.ava.cookbook.controller.CookbookAppWidgetset")
 public class CookbookController extends UI {
-    
+
     public Navigator nav;
-    
+
     // Views
+    public static final String LOGIN_VIEW = "";
     public static final String MAIN_VIEW = "main";
     public static final String REGISTRATION_VIEW = "registration";
     public static final String CREATE_RECIPE_VIEW = "new recipe";
     public static final String SETTINGS_VIEW = "settings";
     public static final String ABOUT_VIEW = "about";
-    
+
     public CookbookController() {
     }
 
@@ -41,15 +43,16 @@ public class CookbookController extends UI {
         layout.setSpacing(true);
         layout.setSizeFull();
         setContent(layout);
-        
+
         ComponentContainerViewDisplay viewDisplay = new ComponentContainerViewDisplay(layout);
         nav = new Navigator(UI.getCurrent(), viewDisplay);
-        
+
         nav.addView("", new LoginView());
         nav.addView(REGISTRATION_VIEW, new RegistrationView());
         nav.addView(MAIN_VIEW, new MainView());
+        nav.addView(SETTINGS_VIEW, new SettingsView());
     }
-    
+
     @Override
     public void detach() {
         super.detach();

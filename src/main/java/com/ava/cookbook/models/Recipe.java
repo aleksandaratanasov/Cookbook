@@ -20,7 +20,9 @@ public class Recipe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;                                    // Unique identifier of the recipe in the DB
+    //@OneToMany(mappedBy="recipe")
+    //private LinkedList<Ingredient> ingredients;         // Contains the ingredients of the recipe
 
     public Long getId() {
         return id;
@@ -29,6 +31,10 @@ public class Recipe implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    /*public void addIngredient(Ingredient ing) {
+        ingredients.add(ing);
+    }*/
 
     @Override
     public int hashCode() {
@@ -54,5 +60,5 @@ public class Recipe implements Serializable {
     public String toString() {
         return "com.ava.cookbook.models.Recipe[ id=" + id + " ]";
     }
-    
+
 }

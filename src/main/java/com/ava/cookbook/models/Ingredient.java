@@ -54,5 +54,5 @@ public class Ingredient implements Serializable {
     public String toString() {
         return "com.ava.cookbook.models.Ingredient[ id=" + id + " ]";
     }
-    
+
 }
